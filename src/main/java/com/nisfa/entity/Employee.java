@@ -1,12 +1,8 @@
 package com.nisfa.entity;
 
-import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -14,23 +10,11 @@ import javax.validation.constraints.NotNull;
  * @author NisfaYasam
  */
 @Entity
-public class Employee implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+public class Employee extends AbstractEntity {
 
     @NotNull
     @Column(name = "Employee_Name")
     private String name;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;
@@ -43,7 +27,7 @@ public class Employee implements Serializable {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(getId());
         return hash;
     }
 
@@ -56,7 +40,7 @@ public class Employee implements Serializable {
             return false;
         }
         final Employee other = (Employee) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.getId(), other.getId())) {
             return false;
         }
         return true;
